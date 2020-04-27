@@ -1,16 +1,25 @@
 # Sri muniappan thunai
-from flask import Flask
+from flask import Flask, request, jsonify
+from models import Schema
+from service import ToDoService
+import json
 
 app = Flask(__name__)             
 
 
 
-@app.route("/")                   # at the end point /
-def hello():                      # call method hello
-    return "Parassini kadavu Muthappa kathalone"         # which returns "hello world"
+
+@app.route("/")                   
+def hello():                      
+    return "Parassini kadavu Muthappa kathalone"  
+           
+
+@app.route("/todo", methods=["POST"])
+def create_todo():
+    return ToDoService().create(request.get_json())
 
 
 
 if __name__ == "__main__": 
-    Schema()       # on running python app.py
-    app.run(debug=True)                     # run the flask app
+    Schema()       
+    app.run(debug=True, port=5000)       

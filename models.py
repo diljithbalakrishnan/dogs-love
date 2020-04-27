@@ -31,4 +31,18 @@ class Schema:
            email TEXT NOT NULL UNIQUE
        );
        """
-       
+
+class ToDoModel:
+    TABLENAME = "TODO"
+
+    def __init__(self):
+        self.conn = sqlite3.connect('todo.db')
+
+    def create(self, text, description):
+        query = f'insert into {TABLENAME} ' \
+                f'(Title, Description) ' \
+                f'values ("{text}","{description}")'
+        
+        result = self.conn.execute(query)
+        return result
+   # Similarly add functions to select, delete and update todo
