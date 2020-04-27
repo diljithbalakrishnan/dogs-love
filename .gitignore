@@ -5,3 +5,4 @@ geckodriver.log
 venv/
 .idea/
 Reports/
+.DS_Store
